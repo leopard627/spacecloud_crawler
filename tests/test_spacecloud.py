@@ -38,9 +38,19 @@ class TestNaverCrackerClass(unittest.TestCase):
         res = requests.get(url=self.target_1)
         html = res.text
         soup = bs(html, "html.parser")
+        host_space_title = soup.select_one(
+            "#content_wraper > div > div > div.detail_forms > div.photo_box_wrap.type9 > div.detail_box.map_box > div.host_profile > div > div.sp_location > p.sp_name"
+        )
+
         host_website = soup.select_one(
             "#content_wraper > div > div > div.detail_forms > div.photo_box_wrap.type9 > div.detail_box.map_box > div.host_profile > div > div.sp_location > p.sp_homepage > a"
         )
 
+        host_address = soup.select_one(
+            "#content_wraper > div > div > div.detail_forms > div.photo_box_wrap.type9 > div.detail_box.map_box > div.host_profile > div > div.sp_location > p.sp_address"
+        )
+        print("\n")
+        print(host_space_title.get_text())
         print(host_website.get_text())
-        __import__("ipdb").set_trace()
+        print(host_address.get_text())
+        print("\n")
